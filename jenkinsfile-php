@@ -5,8 +5,9 @@ pipeline {
         stage("下载代码") {
             steps {
                 echo "下载代码"
+                echo "${params.BranchName} -------  ${params.APP_REPO} -----  ${params.eType}"
                 //checkout([$class: 'GitSCM', branches: [[name: "${params.BranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'app_repo']], submoduleCfg: [], userRemoteConfigs: [[url: "${params.APP_REPO}"]]])
-                checkout([$class: 'GitSCM', branches: [[name: "${params.BranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'a62eb133-4102-43a0-a793-e81f9c4e8c47', url: 'git@10.8.48.232:business/springcloud/wms-server.git']]])
+                //checkout([$class: 'GitSCM', branches: [[name: "${params.BranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'a62eb133-4102-43a0-a793-e81f9c4e8c47', url: 'git@10.8.48.232:business/springcloud/wms-server.git']]])
             }
         }
 
