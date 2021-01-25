@@ -25,6 +25,7 @@ pipeline {
         stage("打包镜像") {
             environment {
                 //HARBOR_ACCOUNT = credentials('1beb6eaf-4651-48c4-b221-6e430d662807')
+                HARBOR_URL = 'https://reg.xxx.com'
             }
             steps {
                 echo "打包镜像"
