@@ -9,7 +9,7 @@ pipeline {
                 //checkout([$class: 'GitSCM', branches: [[name: "${params.BranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'app_repo']], submoduleCfg: [], userRemoteConfigs: [[url: "${params.APP_REPO}"]]])
                 //checkout([$class: 'GitSCM', branches: [[name: "${params.BranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'a62eb133-4102-43a0-a793-e81f9c4e8c47', url: 'git@10.8.48.232:business/springcloud/wms-server.git']]])
                 checkout([$class: 'GitSCM', branches: [[name: "${params.BranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'a62eb133-4102-43a0-a793-e81f9c4e8c47', url: "${params.APP_REPO}"]]])
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'dockerfile']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/xhh0168/test.git']]])
+                //checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'dockerfile']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/xhh0168/test.git']]])
             }
         }
 
@@ -17,6 +17,16 @@ pipeline {
             steps {
                 echo "构建应用"
                 echo "${params.BranchName} -------  ${params.APP_REPO} -----  ${params.eType}"
+                //sh "cd app_repo && sh build.sh"
+                //sh "cp app_repo/deploy.tar.gz ./"
+            }
+        }
+        
+        stage("下载Dockerfile") {
+            steps {
+                echo "下载Dockerfile"
+                //echo "${params.BranchName} -------  ${params.APP_REPO} -----  ${params.eType}"
+                sh "cd /tmp/dockerfile && git pull https://github.com/xhh0168/test.git"
                 //sh "cd app_repo && sh build.sh"
                 //sh "cp app_repo/deploy.tar.gz ./"
             }
