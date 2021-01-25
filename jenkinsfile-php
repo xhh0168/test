@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo "下载Dockerfile"
                 //echo "${params.BranchName} -------  ${params.APP_REPO} -----  ${params.eType}"
-                sh "cd /tmp/dockerfile && git pull https://github.com/xhh0168/test.git"
+                sh "cd /tmp/dockerfile && (git clone https://github.com/xhh0168/test.git || (cd test && git pull))"
                 //sh "cd app_repo && sh build.sh"
                 //sh "cp app_repo/deploy.tar.gz ./"
             }
