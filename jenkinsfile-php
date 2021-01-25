@@ -9,6 +9,7 @@ pipeline {
                 //checkout([$class: 'GitSCM', branches: [[name: "${params.BranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'app_repo']], submoduleCfg: [], userRemoteConfigs: [[url: "${params.APP_REPO}"]]])
                 //checkout([$class: 'GitSCM', branches: [[name: "${params.BranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'a62eb133-4102-43a0-a793-e81f9c4e8c47', url: 'git@10.8.48.232:business/springcloud/wms-server.git']]])
                 checkout([$class: 'GitSCM', branches: [[name: "${params.BranchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'a62eb133-4102-43a0-a793-e81f9c4e8c47', url: "${params.APP_REPO}"]]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'dockerfile']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/xhh0168/test.git']]])
             }
         }
 
